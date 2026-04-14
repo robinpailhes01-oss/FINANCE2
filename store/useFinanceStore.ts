@@ -5,6 +5,7 @@ import {
   Account,
   AccountType,
   BalancePoint,
+  CategoryBreakdown,
   FinancialSummary,
   Period,
   Transaction,
@@ -368,4 +369,39 @@ export function getBalanceHistory(
   }
 
   return points;
+}
+
+/**
+ * Aggregates spending by category over the given period.
+ * Returns only expense categories, sorted by absolute total (desc).
+ */
+export function getCategoryBreakdown(
+  transactions: Transaction[],
+  period: Period
+): CategoryBreakdown[] {
+  const scoped = getTransactionsByPeriod(transactions, period).filter(
+    (t) => !INCOME_CATEGORIES.includes(t.category)
+  );
+
+  const totals = new Map<TransactionCategory, { total: number; count: number }>();
+  for (const t of scoped) {
+    const amount = Math.abs(t.amount);
+    const existing = totals.get(t.category);
+    totals.set(t.category, {
+      total: (existing?.total ?? 0) + amount,
+      count: (existing?.count ?? 0) + 1,
+    });
+  }
+
+  const grandTotal = Array.from(totals.values()).reduce((s, v) => s + v.total, 0);
+  if (grandTotal === 0) return [];
+
+  return Array.from(totals.entries())
+    .map(([category, { total, count }]) => ({
+      category,
+      total,
+      count,
+      percentage: total / grandTotal,
+    }))
+    .sort((a, b) => b.total - a.total);
 }
