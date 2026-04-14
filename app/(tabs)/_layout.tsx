@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router';
-import { Home, ListOrdered, PieChart, Settings } from 'lucide-react-native';
-import { colors, fonts, fontSizes } from '../../constants/theme';
+import { BarChart2, Home, ListOrdered, Settings } from 'lucide-react-native';
+import { colors } from '../../constants/theme';
 
 export default function TabsLayout() {
   return (
@@ -9,52 +9,48 @@ export default function TabsLayout() {
         headerShown: false,
         tabBarActiveTintColor: colors.accentGold,
         tabBarInactiveTintColor: colors.textTertiary,
+        tabBarShowLabel: false,
         tabBarStyle: {
           backgroundColor: colors.card,
           borderTopColor: colors.border,
           borderTopWidth: 0.5,
-          height: 84,
-          paddingTop: 8,
-          paddingBottom: 28,
+          height: 72,
+          paddingTop: 10,
+          paddingBottom: 10,
+          elevation: 0,
         },
-        tabBarLabelStyle: {
-          fontFamily: fonts.sansMedium,
-          fontSize: fontSizes.xs,
-          letterSpacing: 0.3,
+        tabBarItemStyle: {
+          paddingVertical: 6,
         },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Aperçu',
-          tabBarIcon: ({ color, size }) => <Home color={color} size={size - 2} strokeWidth={1.5} />,
+          tabBarIcon: ({ color }) => <Home color={color} size={22} strokeWidth={1.6} />,
         }}
       />
       <Tabs.Screen
         name="transactions"
         options={{
-          title: 'Opérations',
-          tabBarIcon: ({ color, size }) => (
-            <ListOrdered color={color} size={size - 2} strokeWidth={1.5} />
+          tabBarIcon: ({ color }) => (
+            <ListOrdered color={color} size={22} strokeWidth={1.6} />
           ),
         }}
       />
       <Tabs.Screen
         name="analytics"
         options={{
-          title: 'Analyse',
-          tabBarIcon: ({ color, size }) => (
-            <PieChart color={color} size={size - 2} strokeWidth={1.5} />
+          tabBarIcon: ({ color }) => (
+            <BarChart2 color={color} size={22} strokeWidth={1.6} />
           ),
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
-          title: 'Réglages',
-          tabBarIcon: ({ color, size }) => (
-            <Settings color={color} size={size - 2} strokeWidth={1.5} />
+          tabBarIcon: ({ color }) => (
+            <Settings color={color} size={22} strokeWidth={1.6} />
           ),
         }}
       />

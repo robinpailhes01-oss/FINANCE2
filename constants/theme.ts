@@ -30,15 +30,21 @@ export const colors = {
   overlay: 'rgba(10, 10, 15, 0.85)',
 } as const;
 
+/**
+ * Font family names. These must match the keys passed to `useFonts(...)`
+ * in `app/_layout.tsx`.
+ */
 export const fonts = {
-  serif: 'Fraunces',
-  serifItalic: 'Fraunces-Italic',
-  sans: 'Inter',
-  sansMedium: 'Inter-Medium',
-  sansSemiBold: 'Inter-SemiBold',
-  sansBold: 'Inter-Bold',
-  mono: 'JetBrainsMono',
-  monoMedium: 'JetBrainsMono-Medium',
+  serif: 'Fraunces_400Regular',
+  serifMedium: 'Fraunces_500Medium',
+  serifSemiBold: 'Fraunces_600SemiBold',
+  serifItalic: 'Fraunces_400Regular_Italic',
+  sans: 'Inter_400Regular',
+  sansMedium: 'Inter_500Medium',
+  sansSemiBold: 'Inter_600SemiBold',
+  sansBold: 'Inter_700Bold',
+  mono: 'JetBrainsMono_400Regular',
+  monoMedium: 'JetBrainsMono_500Medium',
 } as const;
 
 export const fontSizes = {
@@ -61,21 +67,21 @@ export const fontSizes = {
 } as const;
 
 export const typography = {
-  // Display amounts
+  // Display amounts (Fraunces)
   amountXl: {
-    fontFamily: fonts.serif,
+    fontFamily: fonts.serifMedium,
     fontSize: fontSizes.serifXl,
-    letterSpacing: -1,
+    letterSpacing: -1.5,
   },
   amountLg: {
-    fontFamily: fonts.serif,
+    fontFamily: fonts.serifMedium,
     fontSize: fontSizes.serifLg,
-    letterSpacing: -0.5,
+    letterSpacing: -0.8,
   },
   amountMd: {
-    fontFamily: fonts.serif,
+    fontFamily: fonts.serifMedium,
     fontSize: fontSizes.serifMd,
-    letterSpacing: -0.25,
+    letterSpacing: -0.4,
   },
 
   // Titles
