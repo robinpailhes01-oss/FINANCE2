@@ -1,0 +1,16 @@
+# EAS Build upload ignore rules.
+# EAS uses .gitignore by default; this file only adds extra exclusions
+# for things that live in the repo but are not needed for the build.
+
+# Agent skills (docs / reference files for Claude Code, not runtime code)
+.claude/
+.agents/
+skills-lock.json
+
+# Docs
+README.md
+docs/
+*.md
+
+# Local Claude session scratch
+.claude-local/
